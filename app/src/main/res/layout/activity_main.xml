@@ -1,49 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    android:paddingRight="16dp"
-    android:paddingLeft="16dp"
-    android:paddingBottom="16dp"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:background="#ffd8a5"
     tools:context=".MainActivity">
 
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:orientation="vertical">
+
     <CalendarView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="wrap_content" />
 
     <RadioGroup android:id="@+id/radio_group"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <RadioButton android:id="@+id/until_fifth_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/until_fifth"/>
 
-        <RadioButton android:id="@+id/until_last_day"
+        <RadioButton
+            android:id="@+id/until_last_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/until_end_of_month"/>
+            android:text="@string/until_end_of_month" />
 
     </RadioGroup>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sum_up"
-        android:onClick="onClickButton"/>
-
-    <TextView
-        android:id="@+id/cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <GridLayout
         android:layout_gravity="center_horizontal"
-        android:textStyle="bold" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="2">
 
-</LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sum_up"
+            android:layout_rowSpan="2"
+            android:layout_marginEnd="20dp"
+            android:onClick="onClickButton"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="@string/cash"/>
+
+        <TextView
+            android:id="@+id/pay_by_cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="@string/card"/>
+
+        <TextView android:id="@+id/pay_by_card"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"/>
+    </GridLayout>
+
+    </LinearLayout>
+
+</ScrollView>

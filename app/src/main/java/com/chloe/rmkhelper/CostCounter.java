@@ -4,15 +4,40 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 class CostCounter {
-    static int sum(LocalDate final_date){
+    private int cash;
+    private int card;
+
+    CostCounter(int cash, int card){
+        this.cash = cash;
+        this.card = card;
+    }
+
+    int getCash(){
+        return this.cash;
+    }
+
+    int getCard(){
+        return this.card;
+    }
+
+    private void setCash(int cash){
+        this.cash = cash;
+    }
+
+    private void setCard(int card){
+        this.card = card;
+    }
+
+    static CostCounter sum(CostCounter costCounter, LocalDate final_date){
         LocalDate now = LocalDate.now();
         int cash = 0;
+        int card = 0;
 
         while (now.compareTo(final_date) < 1){
             DayOfWeek dayOfWeek = now.getDayOfWeek();
 
             if(dayOfWeek.compareTo(DayOfWeek.MONDAY) == 0){
-                cash += 1200;
+                card += 1200;
             }
             if(dayOfWeek.compareTo(DayOfWeek.WEDNESDAY) == 0){
                 cash += 1000;
@@ -22,6 +47,10 @@ class CostCounter {
             }
             now = now.plusDays(1);
         }
-        return cash;
+
+        costCounter.setCash(cash);
+        costCounter.setCard(card);
+
+        return costCounter;
     }
 }
