@@ -9,8 +9,7 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-
-import static com.chloe.rmkhelper.CostCounter.sum;
+import com.chloe.rmkhelper.CostCounter;
 
 public class MainActivity extends Activity {
     @Override
@@ -19,38 +18,35 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    public CostCounter checkRadioButton(){
+    public void onRadioButtonClicked(CostCounter costCounter) {
         RadioGroup radioGroup = findViewById(R.id.radio_group);
         int id = radioGroup.getCheckedRadioButtonId();
-        int cash = 0;
-        int card = 0;
-        CostCounter cc = new CostCounter(cash,card);
-
-        if(id == -1){
+        if (id == -1) {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.choose_one, Toast.LENGTH_SHORT);
             toast.show();
-        }else{
-            switch (id){
+        } else {
+            switch (id) {
                 case R.id.until_fifth_day:
-                    LocalDate final_date = LocalDate.now();
-                    final_date = final_date.plusMonths(1);
-                    final_date = LocalDate.of(final_date.getYear(), final_date.getMonth(),5);
-                    cc = sum(cc, final_date);
+                    LocalDate finalDate = LocalDate.now();
+                    int nextMonth = finalDate.getMonthValue() + 1;
+                    finalDate = LocalDate.of(finalDate.getYear(), nextMonth, 5);
+                    costCounter.calculateSum(finalDate);
                     break;
                 case R.id.until_last_day:
-                    cc = sum(cc, LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()));
+                    costCounter.calculateSum(LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()));
                     break;
             }
         }
-        return cc;
     }
 
-    public void onClickButton(View view){
-        CostCounter cc = checkRadioButton();
+    public void onClickButton(View view) {
+        CostCounter costCounter = new CostCounter(0, 0);
+        onRadioButtonClicked(costCounter);
+
         TextView cash = findViewById(R.id.pay_by_cash);
         TextView card = findViewById(R.id.pay_by_card);
 
-        cash.setText(String.valueOf(cc.getCash()));
-        card.setText(String.valueOf(cc.getCard()));
+        cash.setText(String.valueOf(costCounter.getCash()));
+        card.setText(String.valueOf(costCounter.getCard()));
     }
 }
