@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import com.chloe.rmkhelper.CostCounter;
 
 public class MainActivity extends Activity {
     @Override
@@ -25,15 +24,19 @@ public class MainActivity extends Activity {
             Toast toast = Toast.makeText(getApplicationContext(), R.string.choose_one, Toast.LENGTH_SHORT);
             toast.show();
         } else {
+            LocalDate finalDate = LocalDate.now();
             switch (id) {
                 case R.id.until_fifth_day:
-                    LocalDate finalDate = LocalDate.now();
                     int nextMonth = finalDate.getMonthValue() + 1;
                     finalDate = LocalDate.of(finalDate.getYear(), nextMonth, 5);
                     costCounter.calculateSum(finalDate);
                     break;
+                case R.id.until_fifth_day_of_this:
+                    finalDate = LocalDate.of(finalDate.getYear(), finalDate.getMonth(), 5);
+                    costCounter.calculateSum(finalDate);
+                    break;
                 case R.id.until_last_day:
-                    costCounter.calculateSum(LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()));
+                    costCounter.calculateSum(finalDate.with(TemporalAdjusters.lastDayOfMonth()));
                     break;
             }
         }

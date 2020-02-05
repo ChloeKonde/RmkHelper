@@ -21,24 +21,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+
     <RadioGroup android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <RadioButton android:id="@+id/until_fifth_day"
+        <RadioButton
+            android:id="@+id/until_fifth_day_of_this"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/until_fifth"/>
+            android:text="@string/until_fifth_of_this" />
 
         <RadioButton
             android:id="@+id/until_last_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/until_end_of_month" />
+
+        <RadioButton android:id="@+id/until_fifth_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/until_fifth"/>
 
     </RadioGroup>
 
