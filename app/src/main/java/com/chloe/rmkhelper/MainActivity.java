@@ -31,10 +31,17 @@ public class MainActivity extends Activity {
                     finalDate = LocalDate.of(finalDate.getYear(), nextMonth, 5);
                     costCounter.calculateSum(finalDate);
                     break;
+
                 case R.id.until_fifth_day_of_this:
                     finalDate = LocalDate.of(finalDate.getYear(), finalDate.getMonth(), 5);
                     costCounter.calculateSum(finalDate);
                     break;
+
+                case R.id.until_fifteen_day_of_this:
+                    finalDate = LocalDate.of(finalDate.getYear(), finalDate.getMonth(), 15);
+                    costCounter.calculateSum(finalDate);
+                    break;
+
                 case R.id.until_last_day:
                     costCounter.calculateSum(finalDate.with(TemporalAdjusters.lastDayOfMonth()));
                     break;

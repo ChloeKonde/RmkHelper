@@ -2,6 +2,7 @@
     <string name="app_name">Rmk Helper</string>
     <string name="until_fifth"> До 5 следующего месяца</string>
     <string name="until_fifth_of_this">До 5 этого месяца</string>
+    <string name="until_fifteenth_of_this">До 15 этого месяца</string>
     <string name="until_end_of_month"> До конца месяца </string>
     <string name="sum_up"> Рассчитать </string>
     <string name="choose_one">Выбери один</string>
